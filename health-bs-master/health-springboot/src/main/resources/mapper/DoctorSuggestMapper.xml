@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.DoctorSuggestMapper">
+
+    <resultMap id="pageMap" type="com.project.entity.DoctorSuggest">
+        <result column="id" property="id"/>
+        <result column="doctor_id" property="doctorId"/>
+        <result column="user_id" property="userId"/>
+        <result column="diagnosis_content" property="diagnosisContent"/>
+        <result column="create_time" property="createTime"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,
+        doctor_id,
+        user_id,
+        diagnosis_content,
+        create_time,
+    </sql>
+
+    <select id="userPageList" resultType="com.project.domain.vo.DoctorSuggestPageVo">
+        select a.*,b.nick_name as doctor_name
+        from sys_doctor_suggest a
+                 left join sys_user b on a.doctor_id = b.id
+        where a.user_id = #{userId}
+        order by a.create_time DESC
+    </select>
+
+
+</mapper>

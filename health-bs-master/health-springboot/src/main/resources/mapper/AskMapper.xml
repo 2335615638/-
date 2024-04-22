@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.AskMapper">
+
+    <resultMap id="pageMap" type="com.project.entity.Ask">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="consultation_content" property="consultationContent"/>
+        <result column="doctor_id" property="doctorId"/>
+        <result column="reply_content" property="replyContent"/>
+        <result column="create_time" property="createTime"/>
+        <result column="replay_time" property="replayTime"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,
+        user_id,
+        consultation_content,
+        doctor_id,
+        reply_content,
+        create_time,
+        replay_time,
+    </sql>
+
+    <select id="userPageList" resultType="com.project.domain.vo.AskPageVo">
+        select a.*, b.nick_name as doctor_name
+        from sys_ask a
+        inner join sys_user b on a.doctor_id = b.id
+        where a.user_id = #{userId}
+        <if test="dto.search != '' and dto.search != null">
+            and a.consultation_content like concat('%',#{dto.search},'%')
+        </if>
+    </select>
+
+    <select id="doctorPageList" resultType="com.project.domain.vo.AskPageVo">
+        select a.*, b.nick_name, b.user_name
+        from sys_ask a
+                 inner join sys_user b on a.user_id = b.id
+        where a.doctor_id = #{userId}
+        <if test="dto.search != '' and dto.search != null">
+            and a.consultation_content like concat('%',#{dto.search},'%')
+        </if>
+    </select>
+
+
+</mapper>

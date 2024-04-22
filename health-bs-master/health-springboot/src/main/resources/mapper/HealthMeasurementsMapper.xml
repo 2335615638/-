@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.HealthMeasurementsMapper">
+
+    <resultMap id="pageMap" type="com.project.entity.HealthMeasurements">
+        <result column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="systolic_pressure" property="systolicPressure"/>
+        <result column="diastolic_pressure" property="diastolicPressure"/>
+        <result column="blood_sugar_level" property="bloodSugarLevel"/>
+        <result column="temperature" property="temperature"/>
+        <result column="pulse_rate" property="pulseRate"/>
+        <result column="create_time" property="createTime"/>
+        <result column="diagnosis_user_id" property="diagnosisUserId"/>
+        <result column="diagnosis_content" property="diagnosisContent"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        user_id,
+        systolic_pressure,
+        diastolic_pressure,
+        blood_sugar_level,
+        temperature,
+        pulse_rate,
+        create_time,
+        diagnosis_user_id,
+        diagnosis_content,
+    </sql>
+
+
+</mapper>

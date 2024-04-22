@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.CalculatorMapper">
+
+    <resultMap id="pageMap" type="com.project.entity.Calculator">
+        <result column="id" property="id"/>
+        <result column="sex" property="sex"/>
+        <result column="weight" property="weight"/>
+        <result column="height" property="height"/>
+        <result column="age" property="age"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_by" property="createBy"/>
+        <result column="body_fat_percent" property="bodyFatPercent"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,
+        sex,
+        weight,
+        height,
+        age,
+        create_time,
+        create_by,
+        body_fat_percent,
+    </sql>
+
+    <select id="pageList" resultType="com.project.domain.vo.CalculatorPageVo">
+        select a.*, b.nick_name as create_name
+        from sys_calculator a
+                 left join sys_user b on a.create_by = b.id
+        order by a.create_time desc
+    </select>
+
+
+</mapper>

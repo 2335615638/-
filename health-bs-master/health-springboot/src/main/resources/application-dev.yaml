@@ -1,0 +1,5 @@
+project:
+  file:
+    file-upload-path: D:\project\health-bs\health-bs-master\uploadFile\
+    img-upload-path: D:\project\health-bs\health-bs-master\uploadImg\
+    baseUrl: http://localhost:9090
